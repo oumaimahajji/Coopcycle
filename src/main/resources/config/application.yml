@@ -162,12 +162,12 @@ jhipster:
     title: coopcycle API
     description: coopcycle API documentation
     version: 0.0.1
-    terms-of-service-url:
-    contact-name:
-    contact-url:
-    contact-email:
-    license: unlicensed
-    license-url:
+    terms-of-service-url: "https://www.jhipster.tech/"
+    contact-name: "Mary Doe"
+    contact-url: "https://www.jhipster.tech/"
+    contact-email: "mary_doe@gmail.com"
+    license: "dev"
+    license-url: "https://www.jhipster.tech/"
 # ===================================================================
 # Application specific properties
 # Add your own application properties here, see the ApplicationProperties class
