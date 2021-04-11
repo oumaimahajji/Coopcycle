@@ -1,0 +1,51 @@
+{
+  "name": "Produit",
+  "fields": [
+    {
+      "fieldName": "productName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "productPrice",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "restaurant",
+      "otherEntityRelationshipName": "proposes",
+      "relationshipName": "restaurant",
+      "otherEntityField": "restaurantName",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "commande",
+      "otherEntityRelationshipName": "produit",
+      "relationshipName": "commande",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "produit",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["coopcycle"],
+  "changelogDate": "20210410214745"
+}

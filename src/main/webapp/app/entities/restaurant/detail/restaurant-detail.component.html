@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="restaurant">
+      <h2 data-cy="restaurantDetailsHeading"><span jhiTranslate="coopcycleApp.restaurant.detail.title">Restaurant</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ restaurant.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.restaurant.restaurantName">Restaurant Name</span></dt>
+        <dd>
+          <span>{{ restaurant.restaurantName }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.restaurant.deliveryPrice">Delivery Price</span></dt>
+        <dd>
+          <span>{{ restaurant.deliveryPrice }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.restaurant.restaurantAddress">Restaurant Address</span></dt>
+        <dd>
+          <span>{{ restaurant.restaurantAddress }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.restaurant.restaurantCity">Restaurant City</span></dt>
+        <dd>
+          <span>{{ restaurant.restaurantCity }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/restaurant', restaurant.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

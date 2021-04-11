@@ -1,0 +1,10 @@
+{
+  "coopcycleApp": {
+    "Role": {
+      "null": "",
+      "LIVREUR": "LIVREUR",
+      "COMMERCANT": "COMMERCANT",
+      "CLIENT": "CLIENT"
+    }
+  }
+}

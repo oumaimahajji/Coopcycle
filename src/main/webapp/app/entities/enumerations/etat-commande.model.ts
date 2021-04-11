@@ -1,0 +1,9 @@
+export enum EtatCommande {
+  STARTED = 'STARTED',
+
+  BEINGTREATED = 'BEINGTREATED',
+
+  CANCELLED = 'CANCELLED',
+
+  FINISHED = 'FINISHED',
+}

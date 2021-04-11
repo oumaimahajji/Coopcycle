@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="systemePaiement">
+      <h2 data-cy="systemePaiementDetailsHeading">
+        <span jhiTranslate="coopcycleApp.systemePaiement.detail.title">Systeme Paiement</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ systemePaiement.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.systemePaiement.creditCard">Credit Card</span></dt>
+        <dd>
+          <span>{{ systemePaiement.creditCard }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.systemePaiement.experationDate">Experation Date</span></dt>
+        <dd>
+          <span>{{ systemePaiement.experationDate | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.systemePaiement.typeCard">Type Card</span></dt>
+        <dd>
+          <span>{{ systemePaiement.typeCard }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.systemePaiement.amount">Amount</span></dt>
+        <dd>
+          <span>{{ systemePaiement.amount }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.systemePaiement.billDate">Bill Date</span></dt>
+        <dd>
+          <span>{{ systemePaiement.billDate | formatMediumDatetime }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/systeme-paiement', systemePaiement.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

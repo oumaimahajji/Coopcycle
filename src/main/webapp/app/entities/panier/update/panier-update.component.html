@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-panier-heading" data-cy="PanierCreateUpdateHeading" jhiTranslate="coopcycleApp.panier.home.createOrEditLabel">
+        Create or edit a Panier
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.panier.price" for="field_price">Price</label>
+          <input type="text" class="form-control" name="price" id="field_price" data-cy="price" formControlName="price" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.panier.madeBy" for="field_madeBy">Made By</label>
+          <select class="form-control" id="field_madeBy" data-cy="madeBy" name="madeBy" formControlName="madeBy">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="compteOption.id === editForm.get('madeBy')!.value?.id ? editForm.get('madeBy')!.value : compteOption"
+              *ngFor="let compteOption of comptesSharedCollection; trackBy: trackCompteById"
+            >
+              {{ compteOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.panier.paidBy" for="field_paidBy">Paid By</label>
+          <select class="form-control" id="field_paidBy" data-cy="paidBy" name="paidBy" formControlName="paidBy">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                systemePaiementOption.id === editForm.get('paidBy')!.value?.id ? editForm.get('paidBy')!.value : systemePaiementOption
+              "
+              *ngFor="let systemePaiementOption of systemePaiementsSharedCollection; trackBy: trackSystemePaiementById"
+            >
+              {{ systemePaiementOption.creditCard }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

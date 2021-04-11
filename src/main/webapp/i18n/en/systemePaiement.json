@@ -1,0 +1,29 @@
+{
+  "coopcycleApp": {
+    "systemePaiement": {
+      "home": {
+        "title": "Systeme Paiements",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Systeme Paiement",
+        "createOrEditLabel": "Create or edit a Systeme Paiement",
+        "notFound": "No Systeme Paiements found"
+      },
+      "created": "A new Systeme Paiement is created with identifier {{ param }}",
+      "updated": "A Systeme Paiement is updated with identifier {{ param }}",
+      "deleted": "A Systeme Paiement is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Systeme Paiement {{ id }}?"
+      },
+      "detail": {
+        "title": "Systeme Paiement"
+      },
+      "id": "ID",
+      "creditCard": "Credit Card",
+      "experationDate": "Experation Date",
+      "typeCard": "Type Card",
+      "amount": "Amount",
+      "billDate": "Bill Date",
+      "panier": "Panier"
+    }
+  }
+}

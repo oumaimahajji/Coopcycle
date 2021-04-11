@@ -1,0 +1,95 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-cooperative-heading"
+        data-cy="CooperativeCreateUpdateHeading"
+        jhiTranslate="coopcycleApp.cooperative.home.createOrEditLabel"
+      >
+        Create or edit a Cooperative
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.cooperative.cooperativeName" for="field_cooperativeName"
+            >Cooperative Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="cooperativeName"
+            id="field_cooperativeName"
+            data-cy="cooperativeName"
+            formControlName="cooperativeName"
+          />
+          <div
+            *ngIf="
+              editForm.get('cooperativeName')!.invalid &&
+              (editForm.get('cooperativeName')!.dirty || editForm.get('cooperativeName')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('cooperativeName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              This field cannot be longer than 30 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.cooperative.cooperativeCity" for="field_cooperativeCity"
+            >Cooperative City</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="cooperativeCity"
+            id="field_cooperativeCity"
+            data-cy="cooperativeCity"
+            formControlName="cooperativeCity"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.cooperative.cooperativeAddress" for="field_cooperativeAddress"
+            >Cooperative Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="cooperativeAddress"
+            id="field_cooperativeAddress"
+            data-cy="cooperativeAddress"
+            formControlName="cooperativeAddress"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+{
+  "name": "Commande",
+  "fields": [
+    {
+      "fieldName": "created",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "EtatCommande",
+      "fieldValues": "STARTED,BEINGTREATED,CANCELLED,FINISHED"
+    },
+    {
+      "fieldName": "timeStarted",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "timeEnded",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "panier",
+      "otherEntityRelationshipName": "commande",
+      "relationshipName": "price",
+      "otherEntityField": "price",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "produit",
+      "otherEntityRelationshipName": "commande",
+      "relationshipName": "produit",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "compte",
+      "otherEntityRelationshipName": "commande",
+      "relationshipName": "deliveredBy",
+      "otherEntityField": "name"
+    }
+  ],
+  "entityTableName": "commande",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["coopcycle"],
+  "changelogDate": "20210410214743"
+}

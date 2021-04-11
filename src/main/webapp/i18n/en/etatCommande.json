@@ -1,0 +1,11 @@
+{
+  "coopcycleApp": {
+    "EtatCommande": {
+      "null": "",
+      "STARTED": "STARTED",
+      "BEINGTREATED": "BEINGTREATED",
+      "CANCELLED": "CANCELLED",
+      "FINISHED": "FINISHED"
+    }
+  }
+}

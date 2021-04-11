@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity Commande.
+    -->
+    <changeSet id="20210410214743-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="price_id"
+                                 baseTableName="commande"
+                                 constraintName="fk_commande__price_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="panier"/>
+
+        <addForeignKeyConstraint baseColumnNames="commande_id"
+                                 baseTableName="rel_commande__produit"
+                                 constraintName="fk_rel_commande__produit__commande_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commande"/>
+
+        <addForeignKeyConstraint baseColumnNames="produit_id"
+                                 baseTableName="rel_commande__produit"
+                                 constraintName="fk_rel_commande__produit__produit_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="produit"/>
+        
+        <addForeignKeyConstraint baseColumnNames="delivered_by_id"
+                                 baseTableName="commande"
+                                 constraintName="fk_commande__delivered_by_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="compte"/>
+
+    </changeSet>
+</databaseChangeLog>

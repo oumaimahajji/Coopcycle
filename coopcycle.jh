@@ -1,0 +1,98 @@
+
+application {
+  config {
+    baseName coopcycle,
+    applicationType monolith,
+    packageName com.application.coopcycle,
+    authenticationType jwt,
+    prodDatabaseType mysql,
+    clientFramework angularX
+  }
+  entities *
+}
+
+enum Role {
+	LIVREUR, COMMERCANT, CLIENT
+}
+
+
+entity Compte {
+	name String required  ,
+    surname String required  ,
+	email String required pattern(/^([a-zA-Z0-9_\-\.]+)@(|gmail|imag|hotmail|yahoo+)\.(fr|com)$/) ,
+    	categorie Role,
+  	phoneNumber String minlength(10) maxlength(10), 
+  	address String maxlength(100),
+  	postalCode String minlength(5) maxlength(5),
+  	city String maxlength(30)
+}	
+
+entity Panier {
+	price String
+}
+
+enum EtatCommande {
+	STARTED, BEINGTREATED, CANCELLED, FINISHED
+}
+
+entity Commande{
+	created Instant required
+     	state EtatCommande,
+  	timeStarted Instant,
+  	timeEnded Instant
+}
+
+
+entity SystemePaiement{
+  creditCard String minlength(16) maxlength(16),
+  experationDate Instant required,
+  typeCard String maxlength(20),
+  amount String,
+  billDate Instant required
+}
+
+entity Produit{
+  productName String,
+  description TextBlob,
+  productPrice  String required,
+  image ImageBlob 
+}
+
+entity Restaurant{
+  restaurantName String maxlength(30),
+  deliveryPrice String ,
+  restaurantAddress String,
+  restaurantCity String maxlength(30)
+}
+
+entity Cooperative{
+ cooperativeName String maxlength(30),
+ cooperativeCity String ,
+ cooperativeAddress String
+}
+
+
+relationship OneToMany {  
+  Compte to Panier{MadeBy(name)},
+  Compte to Commande{DeliveredBy(name)},
+  SystemePaiement to Panier{PaidBy(creditCard)},
+  Cooperative to Compte{MemberOf(cooperativeName)}
+}
+
+relationship ManyToMany{
+	Commande to Produit,
+	Produit{Restaurant(restaurantName)} to Restaurant{Proposes(productName)}
+}
+
+relationship OneToOne{
+	Commande{price(price)} to Panier
+}
+
+paginate * with pagination 
+
+dto * with mapstruct
+service * with serviceImpl
+
+filter*
+
+

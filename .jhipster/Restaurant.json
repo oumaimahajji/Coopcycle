@@ -1,0 +1,45 @@
+{
+  "name": "Restaurant",
+  "fields": [
+    {
+      "fieldName": "restaurantName",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    },
+    {
+      "fieldName": "deliveryPrice",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "restaurantAddress",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "restaurantCity",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "30"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "produit",
+      "otherEntityRelationshipName": "restaurant",
+      "relationshipName": "proposes",
+      "otherEntityField": "productName",
+      "ownerSide": false
+    }
+  ],
+  "entityTableName": "restaurant",
+  "dto": "mapstruct",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["coopcycle"],
+  "changelogDate": "20210410214746"
+}

@@ -1,0 +1,63 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="commande">
+      <h2 data-cy="commandeDetailsHeading"><span jhiTranslate="coopcycleApp.commande.detail.title">Commande</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ commande.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.commande.created">Created</span></dt>
+        <dd>
+          <span>{{ commande.created | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.commande.state">State</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'coopcycleApp.EtatCommande.' + commande.state }}">{{ commande.state }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.commande.timeStarted">Time Started</span></dt>
+        <dd>
+          <span>{{ commande.timeStarted | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.commande.timeEnded">Time Ended</span></dt>
+        <dd>
+          <span>{{ commande.timeEnded | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.commande.price">Price</span></dt>
+        <dd>
+          <div *ngIf="commande.price">
+            <a [routerLink]="['/panier', commande.price?.id, 'view']">{{ commande.price?.price }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.commande.produit">Produit</span></dt>
+        <dd>
+          <span *ngFor="let produit of commande.produits; let last = last">
+            <a [routerLink]="['/produit', produit?.id, 'view']">{{ produit.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+        <dt><span jhiTranslate="coopcycleApp.commande.deliveredBy">Delivered By</span></dt>
+        <dd>
+          <div *ngIf="commande.deliveredBy">
+            <a [routerLink]="['/compte', commande.deliveredBy?.id, 'view']">{{ commande.deliveredBy?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/commande', commande.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

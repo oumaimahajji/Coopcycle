@@ -1,0 +1,118 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-restaurant-heading" data-cy="RestaurantCreateUpdateHeading" jhiTranslate="coopcycleApp.restaurant.home.createOrEditLabel">
+        Create or edit a Restaurant
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.restaurant.restaurantName" for="field_restaurantName"
+            >Restaurant Name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="restaurantName"
+            id="field_restaurantName"
+            data-cy="restaurantName"
+            formControlName="restaurantName"
+          />
+          <div
+            *ngIf="
+              editForm.get('restaurantName')!.invalid && (editForm.get('restaurantName')!.dirty || editForm.get('restaurantName')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('restaurantName')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              This field cannot be longer than 30 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.restaurant.deliveryPrice" for="field_deliveryPrice"
+            >Delivery Price</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="deliveryPrice"
+            id="field_deliveryPrice"
+            data-cy="deliveryPrice"
+            formControlName="deliveryPrice"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.restaurant.restaurantAddress" for="field_restaurantAddress"
+            >Restaurant Address</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="restaurantAddress"
+            id="field_restaurantAddress"
+            data-cy="restaurantAddress"
+            formControlName="restaurantAddress"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="coopcycleApp.restaurant.restaurantCity" for="field_restaurantCity"
+            >Restaurant City</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="restaurantCity"
+            id="field_restaurantCity"
+            data-cy="restaurantCity"
+            formControlName="restaurantCity"
+          />
+          <div
+            *ngIf="
+              editForm.get('restaurantCity')!.invalid && (editForm.get('restaurantCity')!.dirty || editForm.get('restaurantCity')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('restaurantCity')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 30 }"
+            >
+              This field cannot be longer than 30 characters.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
